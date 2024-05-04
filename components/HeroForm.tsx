@@ -18,15 +18,14 @@ import { submitSaveHero } from "@/lib/actions";
 import { Textarea } from "./ui/textarea";
 import { useFormState } from "react-dom";
 import HeroFormSubmitButton from "./heroes/HeroFormSubmit";
+import { AlertDestructive } from "./AlertDestructive";
 
 type HeroFormSchema = z.infer<typeof heroSchema>;
 
 function HeroForm() {
   const [state, formAction] = useFormState(submitSaveHero, {
-    validationErrors: [],
+    message: "",
   });
-
-  console.log(state?.message);
 
   const form = useForm<HeroFormSchema>({
     resolver: zodResolver(heroSchema),
@@ -34,21 +33,25 @@ function HeroForm() {
 
   return (
     <Form {...form}>
+      {state.message && <AlertDestructive message={state.message} />}
       <form className="w-2/3 space-y-6" action={formAction}>
         {state?.message && <p>{state.message}</p>}
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <>
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Name" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </>
           )}
         />
+
         <Textarea placeholder="Type your message here." name="description" />
         <ImagePicker name="image" label="image" />
         <HeroFormSubmitButton />

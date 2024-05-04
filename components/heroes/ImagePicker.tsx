@@ -10,9 +10,10 @@ export interface ImagePickerProps {
 }
 
 const ImagePicker = ({ label, name }: ImagePickerProps) => {
-  const [pickedImage, setPickedImage] = useState<string | ArrayBuffer | null>();
+  const fileReader = new FileReader();
+  const [pickedImage, setPickedImage] = useState<string | null>();
   const imageInput = useRef<HTMLInputElement>(null);
-
+  console.log(pickedImage);
   function handlImageChange(e: ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
     if (!files) {
@@ -20,11 +21,9 @@ const ImagePicker = ({ label, name }: ImagePickerProps) => {
       return;
     }
 
-    const fileReader = new FileReader();
     fileReader.onload = () => {
-      setPickedImage(fileReader.result);
+      setPickedImage(fileReader.result as string);
     };
-
     fileReader.readAsDataURL(files[0]);
   }
 
