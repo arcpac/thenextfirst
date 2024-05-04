@@ -38,7 +38,7 @@ const MainHeader = () => {
               <Link href="/heroes" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <p
-                    className={`text-lg lg:text-2xl ${
+                    className={`text-lg lg:text-1xl ${
                       pathName === "/heroes" && classes.active
                     }`}
                   >
@@ -51,7 +51,7 @@ const MainHeader = () => {
               <Link href="/heroes/share" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <p
-                    className={`text-lg lg:text-2xl ${
+                    className={`text-lg lg:text-1xl ${
                       pathName.startsWith("/heroes/share") && classes.active
                     }`}
                   >
@@ -64,7 +64,7 @@ const MainHeader = () => {
               <Link href="/community" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <p
-                    className={`text-lg lg:text-2xl ${
+                    className={`text-lg lg:text-1xl ${
                       pathName.startsWith("/community") && classes.active
                     }`}
                   >

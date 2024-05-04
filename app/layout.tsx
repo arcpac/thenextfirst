@@ -25,11 +25,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex flex-col items-center border-0">
-            <div className="max-w-6xl w-full">
-              <MainHeader />
-              {children}
-            </div>
+          <main className="container mx-auto">
+            <MainHeader />
+            {children}
           </main>
         </ThemeProvider>
       </body>

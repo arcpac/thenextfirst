@@ -2,8 +2,6 @@ import Database from "better-sqlite3";
 import slugify from "slugify";
 import xss from "xss";
 import fs from "node:fs";
-import { ImagePickerProps } from "@/components/heroes/ImagePicker";
-import { redirect } from "next/dist/server/api-utils";
 
 const db = new Database("heroes.db");
 
@@ -41,7 +39,7 @@ export async function saveHero(hero: CreateHeroProps) {
 
   const imageExtension = hero.image.name.split(".").pop();
   const fileName = `${hero.slug}.${imageExtension}`;
-  const stream = fs.createWriteStream(`public/heroes/${fileName}`);
+  const stream = fs.createWriteStream(`/public/heroes/${fileName}`);
   const bufferedImage = await hero.image.arrayBuffer();
   stream.write(Buffer.from(bufferedImage), (error) => {
     if (error) throw new Error("Saving image failed");

@@ -24,13 +24,15 @@ export async function submitSaveHero(
   formData: HeroFormData
 ): Promise<FormState> {
   const heroData = {
-    name: formData.name ?? "",
-    description: formData.description ?? "",
-    image: formData.image ?? "",
+    name: formData.get("name") ?? "",
+    description: formData.get("description") ?? "",
+    image: formData.get("image") ?? "",
     creator: "test",
     creator_email: "test@email.com",
   };
+  console.log("form Data", heroData);
 
+  // console.log(heroData);
   if (
     isInvalidText(heroData.name) ||
     isInvalidText(heroData.description) ||
@@ -42,6 +44,6 @@ export async function submitSaveHero(
   }
 
   await saveHero(heroData);
-  // revalidatePath("/heroes");
+  revalidatePath("/heroes");
   redirect("/heroes");
 }

@@ -15,12 +15,12 @@ const LoadHeroes = () => {
 
 const HeroesPage = async () => {
   return (
-    <div className="">
-      <Suspense fallback={<LoadHeroes />}>
-        <Link href={`/heroes/add`}>Add marvel hero</Link>
+    <Suspense fallback={<LoadHeroes />}>
+      <Link href={`/heroes/add`}>Add marvel hero</Link>
+      <div>
         <Heroes />
-      </Suspense>
-    </div>
+      </div>
+    </Suspense>
   );
 };
 

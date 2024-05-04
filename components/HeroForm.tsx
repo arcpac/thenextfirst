@@ -19,7 +19,6 @@ import { Textarea } from "./ui/textarea";
 import { useFormState } from "react-dom";
 import HeroFormSubmitButton from "./heroes/HeroFormSubmit";
 import { AlertDestructive } from "./AlertDestructive";
-import { Label } from "@/components/ui/label";
 
 type HeroFormSchema = z.infer<typeof heroSchema>;
 
@@ -76,7 +75,7 @@ function HeroForm() {
           <div className="sm:col-span-1 col-span-3 place-content-center self-end ">
             <ImagePicker name="image" label="image" />
           </div>
-          <div className="col-span-3   sm:col-span-1">
+          <div className="col-span-3  sm:col-span-1">
             <HeroFormSubmitButton />
           </div>
         </div>
