@@ -19,6 +19,7 @@ import { Textarea } from "./ui/textarea";
 import { useFormState } from "react-dom";
 import HeroFormSubmitButton from "./heroes/HeroFormSubmit";
 import { AlertDestructive } from "./AlertDestructive";
+import { Label } from "@/components/ui/label";
 
 type HeroFormSchema = z.infer<typeof heroSchema>;
 
@@ -35,26 +36,50 @@ function HeroForm() {
     <Form {...form}>
       {state.message && <AlertDestructive message={state.message} />}
       <form className="w-2/3 space-y-6" action={formAction}>
-        {state?.message && <p>{state.message}</p>}
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <>
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            </>
-          )}
-        />
-
-        <Textarea placeholder="Type your message here." name="description" />
-        <ImagePicker name="image" label="image" />
-        <HeroFormSubmitButton />
+        <div className="grid grid-cols-3 gap-5">
+          {state?.message && <p>{state.message}</p>}
+          <div className="sm:col-span-2 col-span-3 ">
+            <div className="">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Type hero name" {...field} required />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="mt-3">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Type hero description here."
+                        name="description"
+                        required
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <div className="sm:col-span-1 col-span-3 place-content-center self-end ">
+            <ImagePicker name="image" label="image" />
+          </div>
+          <div className="col-span-3   sm:col-span-1">
+            <HeroFormSubmitButton />
+          </div>
+        </div>
       </form>
     </Form>
   );

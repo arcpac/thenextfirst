@@ -1,7 +1,6 @@
 "use client";
 import React, { ChangeEvent, useRef, useState } from "react";
 import classes from "./image-picker.module.css";
-import { Button } from "../ui/button";
 import Image from "next/image";
 
 export interface ImagePickerProps {
@@ -32,13 +31,14 @@ const ImagePicker = ({ label, name }: ImagePickerProps) => {
   }
 
   return (
-    <div className={classes.picker}>
-      <div className={classes.preview}>
+    <div className={`flex flex-col ${classes.picker}`}>
+      <div className={classes.preview} onClick={onClickHandler}>
         {!pickedImage && <p>No image selected</p>}
         {pickedImage && (
           <Image src={pickedImage} alt="The image selected by the user" fill />
         )}
       </div>
+
       <input
         className={classes.input}
         name={name}
@@ -48,14 +48,14 @@ const ImagePicker = ({ label, name }: ImagePickerProps) => {
         ref={imageInput}
         onChange={handlImageChange}
       />
-      <Button
+      {/* <Button
         variant="outline"
         className={`${classes.button} rounded-none dark:bg-red-500`}
         type="button"
         onClick={onClickHandler}
       >
         Upload hero image
-      </Button>
+      </Button> */}
     </div>
   );
 };

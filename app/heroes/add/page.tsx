@@ -2,11 +2,11 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 const HeroForm = dynamic(() => import("@/components/HeroForm"), {
-    ssr: false,
-  });
+  ssr: false,
+});
 const AddHeroPage = () => {
   return (
-    <div>
+    <div className="flex justify-center">
       <HeroForm />
     </div>
   );
