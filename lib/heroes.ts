@@ -3,6 +3,7 @@ import slugify from "slugify";
 import xss from "xss";
 import fs from "node:fs";
 import { ImagePickerProps } from "@/components/heroes/ImagePicker";
+import { redirect } from "next/dist/server/api-utils";
 
 const db = new Database("heroes.db");
 
@@ -34,7 +35,7 @@ export function getHero(slug: string) {
 }
 
 export async function saveHero(hero: CreateHeroProps) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  // await new Promise((resolve) => setTimeout(resolve, 2000));
   hero.slug = slugify(hero.name, { lower: true });
   hero.description = xss(hero.description);
 

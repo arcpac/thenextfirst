@@ -26,7 +26,7 @@ function HeroForm() {
     validationErrors: [],
   });
 
-  console.log(state.message);
+  console.log(state?.message);
 
   const form = useForm<HeroFormSchema>({
     resolver: zodResolver(heroSchema),
